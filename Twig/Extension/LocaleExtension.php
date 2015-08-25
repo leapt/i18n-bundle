@@ -3,13 +3,16 @@
 namespace Snowcap\I18nBundle\Twig\Extension;
 
 use Snowcap\I18nBundle\Registry;
-use \Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Locale\Locale;
-use Symfony\Component\DependencyInjection\Exception\InactiveScopeException;
-
 use Snowcap\I18nBundle\Util\DateFormatter;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Exception\InactiveScopeException;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Intl\Intl;
 
+/**
+ * Class LocaleExtension
+ * @package Snowcap\I18nBundle\Twig\Extension
+ */
 class LocaleExtension extends \Twig_Extension
 {
     /**
@@ -110,11 +113,11 @@ class LocaleExtension extends \Twig_Extension
         }
         else {
             if (strpos($locale, '_') > 0) {
-                $displayCountryLocales = Locale::getDisplayLocales($locale);
-                $displayLgLocales = Locale::getDisplayLocales(substr($locale, 0, strpos($locale, '_')));
+                $displayCountryLocales = Intl::getLocaleBundle()->getLocaleNames($locale);
+                $displayLgLocales = Intl::getLocaleBundle()->getLocaleNames(substr($locale, 0, strpos($locale, '_')));
                 $displayLocales = array_merge($displayLgLocales, $displayCountryLocales);
             } else {
-                $displayLocales = Locale::getDisplayLocales($locale);
+                $displayLocales = Intl::getLocaleBundle()->getLocaleNames($locale);
             }
 
             // time to return a translated locale
@@ -130,18 +133,18 @@ class LocaleExtension extends \Twig_Extension
 
                         if (strpos($locale, '_') > 0) {
                             // Yep! it's a full locale. Let's merge the translated countries for the full locale + his parent, the lg
-                            $displayCountriesChild = Locale::getDisplayCountries($locale);
-                            $displayCountriesParent = Locale::getDisplayCountries(substr($locale, 0, strpos($locale, '_')));
+                            $displayCountriesChild = Intl::getRegionBundle()->getCountryNames($locale);
+                            $displayCountriesParent = Intl::getRegionBundle()->getCountryNames(substr($locale, 0, strpos($locale, '_')));
                             $displayCountries = array_merge($displayCountriesParent, $displayCountriesChild);
                         } else {
                             // it's just a lg
-                            $displayCountries = Locale::getDisplayCountries($locale);
+                            $displayCountries = Intl::getRegionBundle()->getCountryNames($locale);
                         }
 
                         if (array_key_exists($country, $displayCountries)) {
                             // ok we do have a country translation, let's manually build the full translation string
                             $displayCountry = $displayCountries[$country];
-                            $displayLg = Locale::getDisplayLanguage($lg, $locale);
+                            $displayLg = Intl::getLanguageBundle()->getLanguageName($lg, null, $locale);
 
                             return $displayLg . ' (' . $displayCountry . ')';
                         } else {
@@ -169,8 +172,8 @@ class LocaleExtension extends \Twig_Extension
      */
     public function getCountry($country, $default = '', $locale = null)
     {
-        $locale = $locale == null ? Locale::getDefault() : $locale;
-        $countries = Locale::getDisplayCountries($locale);
+        $locale = $locale == null ? 'en' : $locale;
+        $countries = Intl::getRegionBundle()->getCountryNames($locale);
 
         return array_key_exists($country, $countries) ? $countries[$country] : $default;
     }
@@ -180,11 +183,12 @@ class LocaleExtension extends \Twig_Extension
      * @param string|null $displayLocale
      * @return string
      */
-    public function getLanguage($locale, $displayLocale = null) {
-        if(null === $displayLocale) {
+    public function getLanguage($locale, $displayLocale = null)
+    {
+        if (null === $displayLocale) {
             $displayLocale = $locale;
         }
-        $languages = Locale::getDisplayLanguages($displayLocale);
+        $languages = Intl::getLanguageBundle()->getLanguageNames($displayLocale);
 
         return $languages[$locale];
     }
