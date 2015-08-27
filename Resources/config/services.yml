@@ -1,42 +1,42 @@
 parameters:
-    snowcap_i18n.locales: ~
-    snowcap_i18n.routing.translation_domain: ~
+    leapt_i18n.locales: ~
+    leapt_i18n.routing.translation_domain: ~
 
 services:
-    snowcap_i18n:
-        class: Snowcap\I18nBundle\Registry
-        arguments: [%snowcap_i18n.locales%]
+    leapt_i18n:
+        class: Leapt\I18nBundle\Registry
+        arguments: [%leapt_i18n.locales%]
 
-    snowcap_i18n.twig:
-        class: Snowcap\I18nBundle\Twig\Extension\LocaleExtension
-        arguments: [@service_container, @snowcap_i18n]
+    leapt_i18n.twig:
+        class: Leapt\I18nBundle\Twig\Extension\LocaleExtension
+        arguments: [@service_container, @leapt_i18n]
         tags:
             - { name: twig.extension }
 
-    snowcap_i18n.routing_loader_helper:
-        class: Snowcap\I18nBundle\Routing\I18nLoaderHelper
-        arguments: [@translator, %snowcap_i18n.routing.translation_domain%]
+    leapt_i18n.routing_loader_helper:
+        class: Leapt\I18nBundle\Routing\I18nLoaderHelper
+        arguments: [@translator, %leapt_i18n.routing.translation_domain%]
 
-    snowcap_i18n.routing_loader_class:
-        class: Snowcap\I18nBundle\Routing\I18nAnnotatedRouteControllerLoader
-        arguments: [@annotation_reader, @snowcap_i18n.routing_loader_helper, @snowcap_i18n]
+    leapt_i18n.routing_loader_class:
+        class: Leapt\I18nBundle\Routing\I18nAnnotatedRouteControllerLoader
+        arguments: [@annotation_reader, @leapt_i18n.routing_loader_helper, @leapt_i18n]
         tags:
             - { name: routing.loader }
 
-    snowcap_i18n.routing_loader_annotation_directory:
-        class: Snowcap\I18nBundle\Routing\I18nAnnotationDirectoryLoader
-        arguments: [@file_locator, @snowcap_i18n.routing_loader_class]
+    leapt_i18n.routing_loader_annotation_directory:
+        class: Leapt\I18nBundle\Routing\I18nAnnotationDirectoryLoader
+        arguments: [@file_locator, @leapt_i18n.routing_loader_class]
         tags:
             - { name: routing.loader }
 
-    snowcap_i18n.routing_loader_annotation_file:
-        class: Snowcap\I18nBundle\Routing\I18nAnnotationFileLoader
-        arguments: [@file_locator, @snowcap_i18n.routing_loader_class]
+    leapt_i18n.routing_loader_annotation_file:
+        class: Leapt\I18nBundle\Routing\I18nAnnotationFileLoader
+        arguments: [@file_locator, @leapt_i18n.routing_loader_class]
         tags:
             - { name: routing.loader }
 
-    snowcap_i18n.routing_loader_yaml:
-        class: Snowcap\I18nBundle\Routing\I18nYamlFileLoader
-        arguments: [@file_locator, @snowcap_i18n.routing_loader_helper, @snowcap_i18n]
+    leapt_i18n.routing_loader_yaml:
+        class: Leapt\I18nBundle\Routing\I18nYamlFileLoader
+        arguments: [@file_locator, @leapt_i18n.routing_loader_helper, @leapt_i18n]
         tags:
             - { name: routing.loader }

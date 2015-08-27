@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\I18nBundle\Entity;
+namespace Leapt\I18nBundle\Entity;
 
 
 /**
@@ -8,7 +8,7 @@ namespace Snowcap\I18nBundle\Entity;
  *
  * Implement this interface on your translation entity
  *
- * @package Snowcap\I18nBundle\Entity
+ * @package Leapt\I18nBundle\Entity
  */
 interface TranslationInterface 
 {

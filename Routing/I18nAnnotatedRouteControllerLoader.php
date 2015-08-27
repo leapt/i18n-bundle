@@ -1,18 +1,23 @@
 <?php
 
-namespace Snowcap\I18nBundle\Routing;
+namespace Leapt\I18nBundle\Routing;
 
 use Doctrine\Common\Annotations\Reader;
+use Leapt\I18nBundle\Registry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader;
-use Snowcap\I18nBundle\Registry;
 use Symfony\Component\Routing\RouteCollection;
 
-class I18nAnnotatedRouteControllerLoader extends AnnotatedRouteControllerLoader {
+/**
+ * Class I18nAnnotatedRouteControllerLoader
+ * @package Leapt\I18nBundle\Routing
+ */
+class I18nAnnotatedRouteControllerLoader extends AnnotatedRouteControllerLoader
+{
     /**
      * @var string
      */
-    protected $routeAnnotationClass = 'Snowcap\\I18nBundle\\Annotation\\I18nRoute';
+    protected $routeAnnotationClass = 'Leapt\\I18nBundle\\Annotation\\I18nRoute';
 
     /**
      * @var I18nLoaderHelper
@@ -20,7 +25,7 @@ class I18nAnnotatedRouteControllerLoader extends AnnotatedRouteControllerLoader 
     private $helper;
 
     /**
-     * @var \Snowcap\I18nBundle\Registry
+     * @var \Leapt\I18nBundle\Registry
      */
     private $registry;
 

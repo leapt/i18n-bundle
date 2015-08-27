@@ -1,11 +1,12 @@
 <?php
 
-namespace Snowcap\I18nBundle\Annotation;
+namespace Leapt\I18nBundle\Annotation;
 
 /**
  * @Annotation
  */
-class I18nRoute {
+class I18nRoute
+{
     /**
      * @var array
      */

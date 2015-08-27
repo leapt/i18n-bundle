@@ -1,9 +1,9 @@
 {
-    "name": "snowcap/i18n-bundle",
+    "name": "leapt/i18n-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony SnowcapI18nBundle",
+    "description": "Symfony LeaptI18nBundle",
     "keywords": ["i18n", "localization", "text"],
-    "homepage": "https://github.com/snowcap/SnowcapI18nBundle",
+    "homepage": "https://github.com/leapt/i18n-bundle",
     "license": "MIT",
     "authors": [
         {
@@ -29,9 +29,8 @@
         "symfony/framework-bundle": ">=2.2"
     },
     "autoload": {
-        "psr-0": { "Snowcap\\I18nBundle": "" }
+        "psr-4": { "Leapt\\I18nBundle": "" }
     },
-    "target-dir": "Snowcap/I18nBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "2.3.x-dev"

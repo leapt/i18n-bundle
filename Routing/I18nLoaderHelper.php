@@ -1,10 +1,15 @@
 <?php
 
-namespace Snowcap\I18nBundle\Routing;
+namespace Leapt\I18nBundle\Routing;
 
 use Symfony\Component\Translation\TranslatorInterface;
 
-class I18nLoaderHelper {
+/**
+ * Class I18nLoaderHelper
+ * @package Leapt\I18nBundle\Routing
+ */
+class I18nLoaderHelper
+{
     /**
      * @var \Symfony\Component\Translation\TranslatorInterface
      */

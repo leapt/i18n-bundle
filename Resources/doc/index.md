@@ -1,29 +1,28 @@
-Getting started with SnowcapI18nBundle
+Getting started with LeaptI18nBundle
 =======================================
 
-SnowcapI18nBundle provides a few useful features for multilingual websites.
+LeaptI18nBundle provides a few useful features for multilingual websites.
 
 ## Prerequisites
 
-This version of the bundle requires Symfony 2.3+. If you are using Symfony
-2.2.x, please use the 2.2.x branch of the bundle.
+This version of the bundle requires Symfony 2.3+.
 
 ## Installation
 
 Installation is a 3 step process:
 
-1. Download SnowcapI18nBundle using composer
+1. Download LeaptI18nBundle using composer
 2. Enable the Bundle and its dependencies
 3. Configure your locales
 
-### Step 1: Download SnowcapAdminBundle using composer
+### Step 1: Download LeaptI18nBundle using composer
 
-Add SnowcapI18nBundle in your composer.json:
+Add LeaptI18nBundle in your composer.json:
 
 ```js
 {
     "require": {
-        "snowcap/i18n-bundle": "dev-master"
+        "leapt/i18n-bundle": "~1.0"
     }
 }
 ```
@@ -31,10 +30,10 @@ Add SnowcapI18nBundle in your composer.json:
 Now tell composer to download the bundle by running the command:
 
 ``` bash
-$ php composer.phar update snowcap/i18n-bundle
+$ php composer.phar update leapt/i18n-bundle
 ```
 
-Composer will install the bundle to your project's `vendor/snowcap` directory.
+Composer will install the bundle to your project's `vendor/leapt` directory.
 
 ### Step 2: Enable the bundle
 
@@ -48,7 +47,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Snowcap\I18nBundle\SnowcapI18nBundle(),
+        new Leapt\I18nBundle\LeaptI18nBundle(),
     );
 }
 ```
@@ -58,14 +57,14 @@ public function registerBundles()
 ```yml
 # app/config/config.yml
 
-snowcap_i18n:
+leapt_i18n:
     locales: ["fr", "en"]
 
 ```
 
 ## Route annotations
 
-SnowcapI18nBundle provides a simple annotation class, similar to the one provided by [Sensio FrameworkExtraBundle](http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/routing.html).
+LeaptI18nBundle provides a simple annotation class, similar to the one provided by [Sensio FrameworkExtraBundle](http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/routing.html).
 
 ### Basic usage
 
@@ -86,7 +85,7 @@ In your controllers, use the annotation as you would use the vanilla @Route one:
 <?php
 // src/Hello/WorldBundle/Controller/DefaultController.php
 
-use Snowcap\I18nBundle\Annotation\I18nRoute;
+use Leapt\I18nBundle\Annotation\I18nRoute;
 
 /**
  * @I18nRoute("hello", name="say_hello")
@@ -97,14 +96,14 @@ public function helloAction)
 }
 ```
 
-When parsing your controllers, for each @I18nRoute annotation, SnowcapI18nBundle will create one route per locale (as specified in your `config.yml` file).
+When parsing your controllers, for each @I18nRoute annotation, LeaptI18nBundle will create one route per locale (as specified in your `config.yml` file).
 
 Assuming we have to locales ("fr" and "en"), the above example will result in the following routes being created:
 
 * say_hello.fr (/fr/say_hello)
 * say_hello.en (/en/say_hello)
 
-Please note that internally, **SnowcapI18nBundle replace the default router with its own**. While this will be fine in most cases, 
+Please note that internally, **LeaptI18nBundle replace the default router with its own**. While this will be fine in most cases, 
 you will run into trouble if you are already using a custom router class.
 
 ### Using a non-i18n route among i18n routes
@@ -131,7 +130,7 @@ The above route will be imported as a regular, locale-agnostic route.
 
 ## Twig extension
 
-SnowcapI18nBundle comes with a Twig extension that offers a few functions / filters.
+LeaptI18nBundle comes with a Twig extension that offers a few functions / filters.
 
 **get_active_locales**
 

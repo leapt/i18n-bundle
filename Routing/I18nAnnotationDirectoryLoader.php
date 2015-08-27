@@ -1,10 +1,15 @@
 <?php
 
-namespace Snowcap\I18nBundle\Routing;
+namespace Leapt\I18nBundle\Routing;
 
 use Symfony\Component\Routing\Loader\AnnotationDirectoryLoader;
 
-class I18nAnnotationDirectoryLoader extends AnnotationDirectoryLoader {
+/**
+ * Class I18nAnnotationDirectoryLoader
+ * @package Leapt\I18nBundle\Routing
+ */
+class I18nAnnotationDirectoryLoader extends AnnotationDirectoryLoader
+{
     /**
      * @param mixed $resource
      * @param null $type

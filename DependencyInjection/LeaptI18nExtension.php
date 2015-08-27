@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\I18nBundle\DependencyInjection;
+namespace Leapt\I18nBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class SnowcapI18nExtension extends Extension
+class LeaptI18nExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -25,12 +25,12 @@ class SnowcapI18nExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('snowcap_i18n.locales', $config['locales']);
+        $container->setParameter('leapt_i18n.locales', $config['locales']);
 
         // Routing
-        $this->addClassesToCompile(array('Snowcap\I18nBundle\Routing\I18nRouter'));
+        $this->addClassesToCompile(array('Leapt\I18nBundle\Routing\I18nRouter'));
         foreach(array('translation_domain') as $parameter) {
-            $container->setParameter('snowcap_i18n.routing.' . $parameter, $config['routing'][$parameter]);
+            $container->setParameter('leapt_i18n.routing.' . $parameter, $config['routing'][$parameter]);
         }
     }
 }

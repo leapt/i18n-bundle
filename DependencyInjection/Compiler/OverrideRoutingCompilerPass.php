@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\I18nBundle\DependencyInjection\Compiler;
+namespace Leapt\I18nBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -11,7 +11,7 @@ class OverrideRoutingCompilerPass implements CompilerPassInterface {
      */
     public function process(ContainerBuilder $container)
     {
-        $container->setParameter('router.class', 'Snowcap\I18nBundle\Routing\I18nRouter');
-        $container->getDefinition('router.default')->replaceArgument(4, $container->getDefinition('snowcap_i18n'));
+        $container->setParameter('router.class', 'Leapt\I18nBundle\Routing\I18nRouter');
+        $container->getDefinition('router.default')->replaceArgument(4, $container->getDefinition('leapt_i18n'));
     }
 }

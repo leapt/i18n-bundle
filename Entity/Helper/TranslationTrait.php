@@ -1,13 +1,13 @@
 <?php
 
-namespace Snowcap\I18nBundle\Entity\Helper;
+namespace Leapt\I18nBundle\Entity\Helper;
 
 /**
  * Class TranslationTrait
  *
  * Helper to use on your translation entity
  *
- * @package Snowcap\I18nBundle\Entity
+ * @package Leapt\I18nBundle\Entity
  */
 trait TranslationTrait
 {

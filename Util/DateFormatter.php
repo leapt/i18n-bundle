@@ -1,11 +1,12 @@
 <?php
 
-namespace Snowcap\I18nBundle\Util;
+namespace Leapt\I18nBundle\Util;
 
 /**
  * Description of DateFormatter
  */
-class DateFormatter {
+class DateFormatter
+{
 
     protected $formats = array(
         'full'   => \IntlDateFormatter::FULL,

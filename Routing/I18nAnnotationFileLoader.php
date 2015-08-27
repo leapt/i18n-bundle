@@ -1,8 +1,9 @@
 <?php
 
-namespace Snowcap\I18nBundle\Routing;
+namespace Leapt\I18nBundle\Routing;
 
 use Symfony\Component\Routing\Loader\AnnotationFileLoader;
+
 /**
  * AnnotationFileLoader loads routing information from annotations set
  * on a PHP class and its methods.

@@ -1,9 +1,9 @@
 <?php
 
-namespace Snowcap\I18nBundle\Entity\Helper;
+namespace Leapt\I18nBundle\Entity\Helper;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Snowcap\I18nBundle\Entity\TranslationInterface;
+use Leapt\I18nBundle\Entity\TranslationInterface;
 
 /**
  * Class TranslatableTrait
@@ -12,7 +12,7 @@ use Snowcap\I18nBundle\Entity\TranslationInterface;
  * You need to define the "translation" property on your entity,
  * the Trait provides you all the common accessors
  *
- * @package Snowcap\I18nBundle\Entity
+ * @package Leapt\I18nBundle\Entity
  */
 trait TranslatableTrait
 {

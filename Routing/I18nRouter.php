@@ -1,17 +1,22 @@
 <?php
 
-namespace Snowcap\I18nBundle\Routing;
+namespace Leapt\I18nBundle\Routing;
 
-use Snowcap\I18nBundle\Registry;
+use Leapt\I18nBundle\Registry;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\RequestContext;
 
-class I18nRouter extends Router {
+/**
+ * Class I18nRouter
+ * @package Leapt\I18nBundle\Routing
+ */
+class I18nRouter extends Router
+{
     /**
-     * @var \Snowcap\I18nBundle\Registry
+     * @var \Leapt\I18nBundle\Registry
      */
     private $registry;
 
@@ -52,14 +57,14 @@ class I18nRouter extends Router {
                 $locale = $this->getContext()->getParameter('_locale');
             }
             if(!in_array($locale, $this->registry->getRegisteredLocales())) {
-                throw new \UnexpectedValueException(sprintf('The locale %s has not been registered in the snowcap_i18n config', $locale));
+                throw new \UnexpectedValueException(sprintf('The locale %s has not been registered in the leapt_i18n config', $locale));
             }
             $i18nName = $name . '.' . $locale;
             unset($parameters['_locale']);
 
             return parent::generate($i18nName, $parameters, $referenceType);
         }
-        catch(RouteNotFoundException $e) {
+        catch (RouteNotFoundException $e) {
             return parent::generate($name, $originalParameters, $referenceType);
         }
     }

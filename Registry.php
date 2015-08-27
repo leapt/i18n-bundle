@@ -1,10 +1,15 @@
 <?php
 
-namespace Snowcap\I18nBundle;
+namespace Leapt\I18nBundle;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 
-class Registry extends ContainerAware {
+/**
+ * Class Registry
+ * @package Leapt\I18nBundle
+ */
+class Registry extends ContainerAware
+{
     /**
      * @var array
      */

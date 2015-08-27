@@ -1,14 +1,19 @@
 <?php
 
-namespace Snowcap\I18nBundle\Routing;
+namespace Leapt\I18nBundle\Routing;
 
-use Snowcap\I18nBundle\Registry;
+use Leapt\I18nBundle\Registry;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Symfony\Component\Routing\RouteCollection;
 
-class I18nYamlFileLoader extends YamlFileLoader {
+/**
+ * Class I18nYamlFileLoader
+ * @package Leapt\I18nBundle\Routing
+ */
+class I18nYamlFileLoader extends YamlFileLoader
+{
     /**
      * @var I18nLoaderHelper
      */

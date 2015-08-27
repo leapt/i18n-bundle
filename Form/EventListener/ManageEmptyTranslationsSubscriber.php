@@ -1,14 +1,18 @@
 <?php
 
-namespace Snowcap\I18nBundle\Form\EventListener;
+namespace Leapt\I18nBundle\Form\EventListener;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Snowcap\I18nBundle\Entity\TranslatableInterface;
-use Snowcap\I18nBundle\Entity\TranslationInterface;
+use Leapt\I18nBundle\Entity\TranslatableInterface;
+use Leapt\I18nBundle\Entity\TranslationInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 
+/**
+ * Class ManageEmptyTranslationsSubscriber
+ * @package Leapt\I18nBundle\Form\EventListener
+ */
 class ManageEmptyTranslationsSubscriber implements EventSubscriberInterface
 {
     /**
@@ -69,13 +73,13 @@ class ManageEmptyTranslationsSubscriber implements EventSubscriberInterface
         $data = $event->getData();
         $form = $event->getForm();
         $dataClass = $form->getConfig()->getDataClass();
-        if(in_array('Snowcap\I18nBundle\Entity\TranslatableInterface', class_implements($dataClass))) {
+        if (in_array('Leapt\I18nBundle\Entity\TranslatableInterface', class_implements($dataClass))) {
             /** @var $availableTranslations ArrayCollection */
-            if(null === $data) {
+            if (null === $data) {
                 $data = new $dataClass;
             }
             $availableTranslations = $data->getTranslations();
-            foreach($this->locales as $locale) {
+            foreach ($this->locales as $locale) {
                 if (!$availableTranslations->containsKey($locale)) {
                     /** @var TranslationInterface $translation */
                     $translation = new $this->translationClass;

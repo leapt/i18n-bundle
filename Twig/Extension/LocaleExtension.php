@@ -1,9 +1,9 @@
 <?php
 
-namespace Snowcap\I18nBundle\Twig\Extension;
+namespace Leapt\I18nBundle\Twig\Extension;
 
-use Snowcap\I18nBundle\Registry;
-use Snowcap\I18nBundle\Util\DateFormatter;
+use Leapt\I18nBundle\Registry;
+use Leapt\I18nBundle\Util\DateFormatter;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\InactiveScopeException;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +11,7 @@ use Symfony\Component\Intl\Intl;
 
 /**
  * Class LocaleExtension
- * @package Snowcap\I18nBundle\Twig\Extension
+ * @package Leapt\I18nBundle\Twig\Extension
  */
 class LocaleExtension extends \Twig_Extension
 {
@@ -21,7 +21,7 @@ class LocaleExtension extends \Twig_Extension
     private $container;
 
     /**
-     * @var \Snowcap\I18nBundle\Registry
+     * @var \Leapt\I18nBundle\Registry
      */
     private $registry;
 

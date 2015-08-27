@@ -1,13 +1,13 @@
 <?php
 
-namespace Snowcap\I18nBundle\Entity;
+namespace Leapt\I18nBundle\Entity;
 
 /**
  * Interface TranslatableInterface
  *
  * Implement this interface when you want your entity to be translatable
  *
- * @package Snowcap\I18nBundle\Entity
+ * @package Leapt\I18nBundle\Entity
  */
 interface TranslatableInterface 
 {
