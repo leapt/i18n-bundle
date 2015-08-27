@@ -29,7 +29,7 @@
         "symfony/framework-bundle": ">=2.2"
     },
     "autoload": {
-        "psr-4": { "Leapt\\I18nBundle": "" }
+        "psr-4": { "Leapt\\I18nBundle\\": "" }
     },
     "extra": {
         "branch-alias": {
