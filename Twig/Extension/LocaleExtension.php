@@ -13,7 +13,7 @@ use Symfony\Component\Intl\Intl;
  * Class LocaleExtension
  * @package Leapt\I18nBundle\Twig\Extension
  */
-class LocaleExtension extends \Twig_Extension
+class LocaleExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
