@@ -2,13 +2,11 @@
 
 namespace Leapt\I18nBundle;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-
 /**
  * Class Registry
  * @package Leapt\I18nBundle
  */
-class Registry extends ContainerAware
+class Registry
 {
     /**
      * @var array
@@ -16,9 +14,9 @@ class Registry extends ContainerAware
     private $locales;
 
     /**
-     * @var array an array of paths indexed by locale : Example array("fr" => "/fr/slug", "nl" => "/nl/slug")
+     * @var array An array of paths indexed by locale: Example array("fr" => "/fr/slug", "nl" => "/nl/slug")
      */
-    private $switchPaths = array();
+    private $switchPaths = [];
 
     /**
      * @param array $locales
@@ -72,5 +70,4 @@ class Registry extends ContainerAware
     {
         $this->switchPaths[$locale] = $path;
     }
-
 }
