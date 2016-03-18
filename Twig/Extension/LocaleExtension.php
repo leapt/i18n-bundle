@@ -4,9 +4,7 @@ namespace Leapt\I18nBundle\Twig\Extension;
 
 use Leapt\I18nBundle\Registry;
 use Leapt\I18nBundle\Util\DateFormatter;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\Exception\InactiveScopeException;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Intl\Intl;
 
 /**
@@ -16,22 +14,22 @@ use Symfony\Component\Intl\Intl;
 class LocaleExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     /**
-     * @var \Symfony\Component\DependencyInjection\ContainerInterface
+     * @var \Symfony\Component\HttpFoundation\RequestStack
      */
-    private $container;
+    protected $requestStack;
 
     /**
      * @var \Leapt\I18nBundle\Registry
      */
-    private $registry;
+    protected $registry;
 
     /**
-     * @param ContainerInterface $container
+     * @param RequestStack $requestStack
      * @param Registry $registry
      */
-    public function __construct(ContainerInterface $container, Registry $registry)
+    public function __construct(RequestStack $requestStack, Registry $registry)
     {
-        $this->container = $container;
+        $this->requestStack = $requestStack;
         $this->registry = $registry;
     }
 
@@ -45,15 +43,15 @@ class LocaleExtension extends \Twig_Extension implements \Twig_Extension_Globals
         $locales = $this->registry->getRegisteredLocales();
 
         try {
-            $locale = $this->container->get('request')->getLocale();
-        } catch (InactiveScopeException $e) {
+            $locale = $this->requestStack->getCurrentRequest()->getLocale();
+        } catch (\Exception $e) {
             $locale = current($locales);
         }
 
-        return array(
-            '_locale' => $locale,
+        return [
+            '_locale'  => $locale,
             '_locales' => $locales
-        );
+        ];
     }
 
     /**
@@ -63,12 +61,12 @@ class LocaleExtension extends \Twig_Extension implements \Twig_Extension_Globals
      */
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('get_active_locales', array($this, 'getActiveLocales')),
-            new \Twig_SimpleFunction('set_locale_switch_paths', array($this, 'setSwitchPaths')),
-            new \Twig_SimpleFunction('get_locale_switch_paths', array($this, 'getSwitchPaths')),
-            new \Twig_SimpleFunction('add_locale_switch_path', array($this, 'addSwitchPath')),
-        );
+        return [
+            new \Twig_SimpleFunction('get_active_locales', [$this, 'getActiveLocales']),
+            new \Twig_SimpleFunction('set_locale_switch_paths', [$this, 'setSwitchPaths']),
+            new \Twig_SimpleFunction('get_locale_switch_paths', [$this, 'getSwitchPaths']),
+            new \Twig_SimpleFunction('add_locale_switch_path', [$this, 'addSwitchPath']),
+        ];
     }
 
     /**
@@ -78,11 +76,11 @@ class LocaleExtension extends \Twig_Extension implements \Twig_Extension_Globals
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('country', array($this, 'getCountry')),
-            new \Twig_SimpleFilter('language', array($this, 'getLanguage')),
-            new \Twig_SimpleFilter('locale_date', array($this, 'getLocaleDate')),
-        );
+        return [
+            new \Twig_SimpleFilter('country', [$this, 'getCountry']),
+            new \Twig_SimpleFilter('language', [$this, 'getLanguage']),
+            new \Twig_SimpleFilter('locale_date', [$this, 'getLocaleDate']),
+        ];
     }
 
     /**
@@ -98,7 +96,7 @@ class LocaleExtension extends \Twig_Extension implements \Twig_Extension_Globals
     /**
      * Returns all active locales with short and long names
      *
-     * @param null $locale
+     * @param string|null $locale
      * @return array
      */
     public function getActiveLocales($locale = null)
@@ -106,7 +104,7 @@ class LocaleExtension extends \Twig_Extension implements \Twig_Extension_Globals
         $registeredLocales = $this->registry->getRegisteredLocales();
 
         if (empty($registeredLocales)) {
-            return array();
+            return [];
         }
         elseif ($locale === null) {
             $translatedLocales = $registeredLocales;

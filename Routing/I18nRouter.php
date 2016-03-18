@@ -4,7 +4,6 @@ namespace Leapt\I18nBundle\Routing;
 
 use Leapt\I18nBundle\Registry;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\RequestContext;
@@ -18,24 +17,13 @@ class I18nRouter extends Router
     /**
      * @var \Leapt\I18nBundle\Registry
      */
-    private $registry;
+    protected $registry;
 
     /**
-     * @param ContainerInterface $container
-     * @param string $resource
-     * @param array $options
-     * @param RequestContext $context
      * @param Registry $registry
      */
-    public function __construct(
-        ContainerInterface $container,
-        $resource,
-        array $options = array(),
-        RequestContext $context = null,
-        Registry $registry
-    ){
-        parent::__construct($container, $resource, $options, $context);
-
+    public function setRegistry(Registry $registry)
+    {
         $this->registry = $registry;
     }
 

@@ -9,9 +9,16 @@ services:
 
     leapt_i18n.twig:
         class: Leapt\I18nBundle\Twig\Extension\LocaleExtension
-        arguments: [ "@service_container", "@leapt_i18n" ]
+        arguments: [ "@request_stack", "@leapt_i18n" ]
         tags:
             - { name: twig.extension }
+
+    leapt_i18n.routing_router:
+        class: Leapt\I18nBundle\Routing\I18nRouter
+        parent: router.default
+        public: false
+        calls:
+            - [ "setRegistry", [ "@leapt_i18n" ] ]
 
     leapt_i18n.routing_loader_helper:
         class: Leapt\I18nBundle\Routing\I18nLoaderHelper
