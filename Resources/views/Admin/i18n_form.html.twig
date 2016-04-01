@@ -1,5 +1,5 @@
 {% set prefix = 'I18N_TAB_PREFIX' %}
-<div data-admin="translatable-content" data-prefix="{{ prefix }}">
+<div data-admin="translatable-content" data-prefix="{{ prefix }}" class="nav-tabs-custom">
     <ul class="nav nav-tabs translation-tabs">
         {% for locale in _locales %}
             {% block tab_item %}
