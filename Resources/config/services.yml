@@ -5,7 +5,7 @@ parameters:
 services:
     leapt_i18n:
         class: Leapt\I18nBundle\Registry
-        arguments: [ %leapt_i18n.locales% ]
+        arguments: [ "%leapt_i18n.locales%" ]
 
     leapt_i18n.twig:
         class: Leapt\I18nBundle\Twig\Extension\LocaleExtension
@@ -22,7 +22,7 @@ services:
 
     leapt_i18n.routing_loader_helper:
         class: Leapt\I18nBundle\Routing\I18nLoaderHelper
-        arguments: [ "@translator.default", %leapt_i18n.routing.translation_domain% ]
+        arguments: [ "@translator.default", "%leapt_i18n.routing.translation_domain%" ]
 
     leapt_i18n.routing_loader_class:
         class: Leapt\I18nBundle\Routing\I18nAnnotatedRouteControllerLoader
