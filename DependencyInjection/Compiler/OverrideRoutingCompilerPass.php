@@ -11,6 +11,7 @@ class OverrideRoutingCompilerPass implements CompilerPassInterface {
      */
     public function process(ContainerBuilder $container)
     {
-        $container->setAlias('router', 'leapt_i18n.routing_router');
+        $container->setAlias('router', 'leapt_i18n.routing_router')
+            ->setPublic(true);
     }
 }
